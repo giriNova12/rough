@@ -167,6 +167,41 @@ gh clone gh repo clone giriNova12/rough
 
 ## Branches
 
+To create new branch to the main branch 
+```sh
+git branch <name of the branch>
+```
+if we want to create new branch dev to origin 
+```sh
+git branch dev
+```
+To graphically view the changes and branches done 
+to our repo install the extension 'git graph'
+this helps us to visualize the repository tree
+
+To create a commit in dev to view tree follow below 
+
+```sh
+git branch dev
+# to view our branch - current branch will have *
+# * main
+#   dev
+git branch
+# switch to intended branch
+git branch dev
+# make necessary changes
+code hello
+git add .
+git commit -m "first commit in dev branch"
+git push -u origin dev
+
+# return to main branch and verify
+git switch main
+git branch 
+
+```
+
+
 ## Remotes
 
 ## Stashing
