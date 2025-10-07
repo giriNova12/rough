@@ -201,10 +201,110 @@ git branch
 
 ```
 
+## Merging
 
-## Remotes
+simple command to merg the branches
+go to required branch to merge other branch 
+to our branch 
+
+here it is dev branch to main branch 
+```sh
+git checkout main 
+     # or 
+git switch main
+git merge dev
+```
+
+if there exist any conflicts make changes as 
+required and once made change add the file to staging
+then to simple commit which takes us to
+merge message editor
+
+```sh
+# once changes are made to conflict files
+git add .
+git commit
+# add merge commit message 
+```
 
 ## Stashing
 
-## Merging
+### What is Git Stash?
 
+`git stash` is a feature that takes the "dirty state" of your working directory -- meaning your modified tracked files and staged changes -- and terporarily shelves them on a stack of unfinished changes.
+
+The primary purpose is to clean your working directory so you can quickly switch branches, pull updates, or perform a hotfix, and then return to your original work later.
+
+### Key Characteristices:
+
+- Local Only: A stash is stored locally in your repository's `.git` directory (`.git/refs/stash`). it is never transferred to a remote repository (like GitHub) when you run `git push`.
+- Uncommitted Work: it specifically saves changes that are not yet committed to your branch's history.
+- Cleans the Directory: After stashing, your working directory and staging area are reverted to the state of the `HEAD` commit (your last commit), allowing you to work on something else.
+
+### To Save (Stash) Changes 
+
+Takes all modified tracked files (staged and unstaged) and saves them in the stash stack. Your working directory becomes clean.
+
+```sh
+git stash
+    # or
+git stash push
+```
+
+### Stash Untracked files
+
+Includes untracked files (new files that were never added to Git) in the stash, in addition to modified files.
+
+```sh
+git stash -u 
+     # or 
+git stash --include-untracked
+```
+
+### To View Stashes 
+
+Shows a list of all stashes you have saved, ordered from newest (`stash@{0}`) to oldest
+
+```sh
+git stash list
+```
+
+Displays a summary of the changes in the most recent stash (`stash@{0}`). Use `git stash show -p` to see a full patch (diff).
+
+```sh
+git stash show
+```
+
+### To Reapply 
+
+To Reapply Changes (keep stash)
+
+Applies the stashed changes to your current branch's working directory, but keeps the stash on the stack. (Default is stash@{0}).
+
+```sh
+git stash apply <stash_id>
+```
+
+To Reapply and Remove (Clean Up)
+
+Applies the stashed changes to your working directory and immediately removes the stash from the stack. (Default is stash@{0}).
+
+```sh
+git stash pop <stash_id>
+```
+
+### To Delete a Stash 
+
+Permanently deletes a specific stash entry from the list.
+
+```sh
+git stash drop <stash_id>
+```
+
+### To Clear All Stashes 
+
+Deletes all stashes from your stack.
+
+```sh
+git stash clear
+```
